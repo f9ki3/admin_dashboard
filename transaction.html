@@ -17,6 +17,31 @@
       td {
         font-size: 12px;
       }
+      /* Style for icon-only buttons with no border or fill */
+      .icon-btn {
+        background: none;
+        border: none;
+        padding: 0 6px;
+        cursor: pointer;
+        color: #0d6efd; /* Bootstrap primary color */
+        font-size: 1.2rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.2s ease;
+      }
+      .icon-btn:hover {
+        color: #0a58ca; /* darker blue on hover */
+      }
+      /* Remove focus outline for better look but keep accessibility */
+      .icon-btn:focus {
+        outline: 2px solid #0a58ca;
+        outline-offset: 2px;
+      }
+      /* Align the guest name text better inside the flex container */
+      td > div > p {
+        margin-bottom: 0;
+      }
     </style>
   </head>
   <body>
@@ -39,7 +64,7 @@
           <p class="text-start text-muted">Menu</p>
           <a
             href="index.html"
-            class="btn btn-primary d-flex align-items-center w-100 p-3 rounded-4 mb-2"
+            class="btn d-flex align-items-center w-100 p-3 rounded-4 mb-2"
           >
             <i class="bi fs-3 bi-ui-radios-grid me-3"></i> Dashboard
           </a>
@@ -57,7 +82,7 @@
           </a>
           <a
             href="transaction.html"
-            class="btn d-flex align-items-center w-100 p-3 rounded-4"
+            class="btn btn-primary d-flex align-items-center w-100 p-3 rounded-4"
           >
             <i class="bi fs-3 bi-cash-stack me-3"></i> Transactions
           </a>
@@ -98,76 +123,35 @@
         <div class="container-fluid">
           <!-- Header -->
           <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="mb-0 fw-bolder">Dashboard Overview</h4>
+            <h4 class="mb-0 fw-bolder">Transaction Records</h4>
             <div class="d-flex align-items-center">
               <i class="bi bi-bell fs-2 me-3"></i>
               <i class="bi bi-person-circle fs-2"></i>
             </div>
           </div>
 
-          <!-- Stats Cards -->
-          <div class="row g-4 mb-4">
-            <div class="col-md-3">
-              <div class="card rounded-4 shadow-sm">
-                <div class="card-body">
-                  <h6 class="text-muted">Total Bookings</h6>
-                  <h3 class="fw-bolder">256</h3>
-                  <div class="text-success small">
-                    <i class="bi bi-arrow-up"></i> 12% increase
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="card rounded-4 shadow-sm">
-                <div class="card-body">
-                  <h6 class="text-muted">Available Rooms</h6>
-                  <h3 class="fw-bolder">42</h3>
-                  <div class="text-danger small">
-                    <i class="bi bi-arrow-down"></i> 8% decrease
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="card rounded-4 shadow-sm">
-                <div class="card-body">
-                  <h6 class="text-muted">Total Revenue</h6>
-                  <h3 class="fw-bolder">₱24,500</h3>
-                  <div class="text-success small">
-                    <i class="bi bi-arrow-up"></i> 15% increase
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="card rounded-4 shadow-sm">
-                <div class="card-body">
-                  <h6 class="text-muted">Active Guests</h6>
-                  <h3 class="fw-bolder">186</h3>
-                  <div class="text-success small">
-                    <i class="bi bi-arrow-up"></i> 5% increase
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-12">
               <div class="card rounded-4 shadow-sm">
+                <div class="ms-3 d-flex flex-row w-50 mt-3 mb-2">
+                  <input
+                    type="text"
+                    id="searchInput"
+                    class="form-control"
+                    placeholder="Search guests..."
+                  />
+                  <button class="btn btn-primary ms-3">Search</button>
+                </div>
                 <div class="card-body">
-                  <h5 class="card-title mb-4">Recent Bookings</h5>
                   <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover align-middle">
                       <thead>
                         <tr>
                           <th>Guest</th>
                           <th>Check In</th>
                           <th>Check Out</th>
                           <th>Status</th>
+                          <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -187,6 +171,14 @@
                           <td><span class="text-muted">Mar 15, 2024</span></td>
                           <td><span class="text-muted">Mar 18, 2024</span></td>
                           <td><span class="badge bg-success">Active</span></td>
+                          <td>
+                            <button class="icon-btn" title="Edit">
+                              <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
                         </tr>
                         <tr>
                           <td>
@@ -204,6 +196,14 @@
                           <td><span class="text-muted">Mar 16, 2024</span></td>
                           <td><span class="text-muted">Mar 20, 2024</span></td>
                           <td><span class="badge bg-warning">Pending</span></td>
+                          <td>
+                            <button class="icon-btn" title="Edit">
+                              <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
                         </tr>
                         <tr>
                           <td>
@@ -221,6 +221,14 @@
                           <td><span class="text-muted">Mar 18, 2024</span></td>
                           <td><span class="text-muted">Mar 22, 2024</span></td>
                           <td><span class="badge bg-info">Confirmed</span></td>
+                          <td>
+                            <button class="icon-btn" title="Edit">
+                              <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
                         </tr>
                         <tr>
                           <td>
@@ -240,6 +248,14 @@
                           <td>
                             <span class="badge bg-danger">Cancelled</span>
                           </td>
+                          <td>
+                            <button class="icon-btn" title="Edit">
+                              <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
                         </tr>
                         <tr>
                           <td>
@@ -257,6 +273,14 @@
                           <td><span class="text-muted">Mar 20, 2024</span></td>
                           <td><span class="text-muted">Mar 24, 2024</span></td>
                           <td><span class="badge bg-success">Active</span></td>
+                          <td>
+                            <button class="icon-btn" title="Edit">
+                              <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
                         </tr>
                         <tr>
                           <td>
@@ -274,27 +298,16 @@
                           <td><span class="text-muted">Mar 21, 2024</span></td>
                           <td><span class="text-muted">Mar 25, 2024</span></td>
                           <td><span class="badge bg-warning">Pending</span></td>
+                          <td>
+                            <button class="icon-btn" title="Edit">
+                              <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
                         </tr>
 
-                        <tr>
-                          <td>
-                            <div class="d-flex align-items-center">
-                              <img
-                                src="images/p8.webp"
-                                class="rounded-circle me-2"
-                                width="60"
-                                height="60"
-                                alt="Guest"
-                              />
-                              <p class="text-muted">Linda Evans</p>
-                            </div>
-                          </td>
-                          <td><span class="text-muted">Mar 23, 2024</span></td>
-                          <td><span class="text-muted">Mar 27, 2024</span></td>
-                          <td>
-                            <span class="badge bg-danger">Cancelled</span>
-                          </td>
-                        </tr>
                         <tr>
                           <td>
                             <div class="d-flex align-items-center">
@@ -305,12 +318,20 @@
                                 height="60"
                                 alt="Guest"
                               />
-                              <p class="text-muted">George Clarke</p>
+                              <p class="text-muted">David Johnson</p>
                             </div>
                           </td>
                           <td><span class="text-muted">Mar 24, 2024</span></td>
                           <td><span class="text-muted">Mar 28, 2024</span></td>
                           <td><span class="badge bg-success">Active</span></td>
+                          <td>
+                            <button class="icon-btn" title="Edit">
+                              <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
                         </tr>
                         <tr>
                           <td>
@@ -322,56 +343,54 @@
                                 height="60"
                                 alt="Guest"
                               />
-                              <p class="text-muted">Nina Park</p>
+                              <p class="text-muted">Emma Davis</p>
                             </div>
                           </td>
                           <td><span class="text-muted">Mar 25, 2024</span></td>
                           <td><span class="text-muted">Mar 29, 2024</span></td>
-                          <td><span class="badge bg-info">Confirmed</span></td>
+                          <td><span class="badge bg-warning">Pending</span></td>
+                          <td>
+                            <button class="icon-btn" title="Edit">
+                              <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                              <i class="bi bi-trash"></i>
+                            </button>
+                          </td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="card rounded-4 shadow-sm">
-                <div class="card-body">
-                  <h5 class="card-title mb-4">Sales Transaction Analytics</h5>
-
-                  <!-- Area Chart -->
-                  <div id="areaChart"></div>
-
-                  <!-- Bar Chart -->
-                  <div id="barChart" class="mt-4"></div>
-                </div>
-              </div>
-
-              <div class="card mt-4 rounded-4 shadow-sm">
-                <div class="card-body">
-                  <h5 class="card-title mb-4">Rooms Available</h5>
-
-                  <div class="row">
-                    <!-- Donut Chart Column -->
-                    <div class="col-md-6">
-                      <div id="roomStatusChart"></div>
-                    </div>
-
-                    <!-- Bar Chart Column -->
-                    <div class="col-md-6">
-                      <div id="roomTypeChart"></div>
-                    </div>
+                  <div class="col-md-6 text-end">
+                    <nav aria-label="Page navigation">
+                      <ul
+                        class="pagination pagination-sm justify-content-end mb-0"
+                        id="pagination"
+                      >
+                        <li class="page-item">
+                          <a class="page-link text-muted" href="#">Previous</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link text-muted" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link text-muted" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link text-muted" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link text-muted" href="#">Next</a>
+                        </li>
+                      </ul>
+                    </nav>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- More content can go here -->
         </div>
       </div>
     </div>
   </body>
-
-  <script src="script.js"></script>
 </html>

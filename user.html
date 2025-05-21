@@ -1,0 +1,376 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      td {
+        font-size: 12px;
+      }
+      /* Style for icon-only buttons with no border or fill */
+      .icon-btn {
+        background: none;
+        border: none;
+        padding: 0 6px;
+        cursor: pointer;
+        color: #0d6efd; /* Bootstrap primary color */
+        font-size: 1.2rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: color 0.2s ease;
+      }
+      .icon-btn:hover {
+        color: #0a58ca; /* darker blue on hover */
+      }
+      /* Remove focus outline for better look but keep accessibility */
+      .icon-btn:focus {
+        outline: 2px solid #0a58ca;
+        outline-offset: 2px;
+      }
+      /* Align the guest name text better inside the flex container */
+      td > div > p {
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="d-flex">
+      <div
+        style="height: 100vh; width: 20%"
+        class="p-4 sticky-top d-flex flex-column border"
+      >
+        <div>
+          <p
+            class="d-flex fw-bolder fs-6 justify-content-center align-items-center"
+          >
+            <i class="bi fs-1 text-primary bi-kanban-fill me-3"></i>Hotel and
+            Restaurant Management
+          </p>
+        </div>
+        <hr />
+
+        <div class="d-flex flex-column flex-grow-1">
+          <p class="text-start text-muted">Menu</p>
+          <a
+            href="index.html"
+            class="btn d-flex align-items-center w-100 p-3 rounded-4 mb-2"
+          >
+            <i class="bi fs-3 bi-ui-radios-grid me-3"></i> Dashboard
+          </a>
+          <a
+            href="user.html"
+            class="btn btn-primary d-flex align-items-center w-100 p-3 rounded-4 mb-2"
+          >
+            <i class="bi fs-3 bi-people me-3"></i> Users/Guest
+          </a>
+          <a
+            href="booking.html"
+            class="btn d-flex align-items-center w-100 p-3 rounded-4 mb-2"
+          >
+            <i class="bi fs-3 bi-house me-3"></i> Bookings
+          </a>
+          <a
+            href="transaction.html"
+            class="btn d-flex align-items-center w-100 p-3 rounded-4"
+          >
+            <i class="bi fs-3 bi-cash-stack me-3"></i> Transactions
+          </a>
+
+          <div>
+            <div
+              class="mt-4 p-4 bg-primary bg-opacity-10 border-primary border rounded-4"
+            >
+              <div class="text-center">
+                <img
+                  class="img-fluid"
+                  src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmF2dGE4cjk3ejh1cHo0aHdnb29xNDQ0bmxwYW11M3F3cDJ4bmJnaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/PiCQpMM6sew3Rb5IfT/giphy.gif"
+                  alt=""
+                  style="width: 40%"
+                />
+                <h5 class="fw-bold text-primary">Premium Access</h5>
+                <p class="text-muted small mb-3">
+                  Get exclusive access to advanced features and detailed
+                  analytics
+                </p>
+                <button class="btn btn-primary btn-sm px-4">
+                  <i class="bi bi-arrow-up-circle me-2"></i>Upgrade Now
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Logout Button at Bottom -->
+          <div class="mt-auto border-top pt-4">
+            <button
+              class="btn d-flex align-items-center w-100 p-3 rounded-4 text-danger"
+            >
+              <i class="bi bi-box-arrow-right me-3"></i> Logout
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="flex-grow-1 p-4">
+        <div class="container-fluid">
+          <!-- Header -->
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0 fw-bolder">Users and Guest Overview</h4>
+            <div class="d-flex align-items-center">
+              <i class="bi bi-bell fs-2 me-3"></i>
+              <i class="bi bi-person-circle fs-2"></i>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="card rounded-4 shadow-sm">
+                <div class="ms-3 d-flex flex-row w-50 mt-3 mb-2">
+                  <input
+                    type="text"
+                    id="searchInput"
+                    class="form-control"
+                    placeholder="Search guests..."
+                  />
+                  <button class="btn btn-primary ms-3">Search</button>
+                </div>
+                <div class="card-body"><table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                            <img
+                                src="images/p1.jpeg"
+                                class="rounded-circle me-2"
+                                width="60"
+                                height="60"
+                                alt="Guest"
+                            />
+                            <p class="text-muted mb-0">Sarah</p>
+                            </div>
+                        </td>
+                        <td>Black</td>
+                        <td>sarah.black@example.com</td>
+                        <td>09171234567</td>
+                        <td>Quezon City</td>
+                        <td>
+                            <button class="icon-btn" title="Edit">
+                            <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                            <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                            <img
+                                src="images/p2.jpeg"
+                                class="rounded-circle me-2"
+                                width="60"
+                                height="60"
+                                alt="Guest"
+                            />
+                            <p class="text-muted mb-0">Arnold</p>
+                            </div>
+                        </td>
+                        <td>Swagger</td>
+                        <td>arnold.swagger@example.com</td>
+                        <td>09221234567</td>
+                        <td>Makati City</td>
+                        <td>
+                            <button class="icon-btn" title="Edit">
+                            <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                            <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                            <img
+                                src="images/p3.jpeg"
+                                class="rounded-circle me-2"
+                                width="60"
+                                height="60"
+                                alt="Guest"
+                            />
+                            <p class="text-muted mb-0">Balder</p>
+                            </div>
+                        </td>
+                        <td>Swagger</td>
+                        <td>balder.swagger@example.com</td>
+                        <td>09081234567</td>
+                        <td>Pasig City</td>
+                        <td>
+                            <button class="icon-btn" title="Edit">
+                            <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                            <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                            <img
+                                src="images/p4.jpeg"
+                                class="rounded-circle me-2"
+                                width="60"
+                                height="60"
+                                alt="Guest"
+                            />
+                            <p class="text-muted mb-0">Emily</p>
+                            </div>
+                        </td>
+                        <td>Stone</td>
+                        <td>emily.stone@example.com</td>
+                        <td>09331234567</td>
+                        <td>Taguig City</td>
+                        <td>
+                            <button class="icon-btn" title="Edit">
+                            <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                            <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                            <img
+                                src="images/p5.jpeg"
+                                class="rounded-circle me-2"
+                                width="60"
+                                height="60"
+                                alt="Guest"
+                            />
+                            <p class="text-muted mb-0">Daniel</p>
+                            </div>
+                        </td>
+                        <td>Cruz</td>
+                        <td>daniel.cruz@example.com</td>
+                        <td>09181234567</td>
+                        <td>Caloocan City</td>
+                        <td>
+                            <button class="icon-btn" title="Edit">
+                            <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                            <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                            <img
+                                src="images/p6.jpeg"
+                                class="rounded-circle me-2"
+                                width="60"
+                                height="60"
+                                alt="Guest"
+                            />
+                            <p class="text-muted mb-0">Lara</p>
+                            </div>
+                        </td>
+                        <td>Gomez</td>
+                        <td>lara.gomez@example.com</td>
+                        <td>09172222222</td>
+                        <td>Antipolo City</td>
+                        <td>
+                            <button class="icon-btn" title="Edit">
+                            <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                            <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                            <img
+                                src="images/p9.jpeg"
+                                class="rounded-circle me-2"
+                                width="60"
+                                height="60"
+                                alt="Guest"
+                            />
+                            <p class="text-muted mb-0">Miguel</p>
+                            </div>
+                        </td>
+                        <td>Santos</td>
+                        <td>miguel.santos@example.com</td>
+                        <td>09173338888</td>
+                        <td>Navotas</td>
+                        <td>
+                            <button class="icon-btn" title="Edit">
+                            <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                            <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                            <img
+                                src="images/p10.jpeg"
+                                class="rounded-circle me-2"
+                                width="60"
+                                height="60"
+                                alt="Guest"
+                            />
+                            <p class="text-muted mb-0">Jasmine</p>
+                            </div>
+                        </td>
+                        <td>Torres</td>
+                        <td>jasmine.torres@example.com</td>
+                        <td>09334445555</td>
+                        <td>Las Piñas</td>
+                        <td>
+                            <button class="icon-btn" title="Edit">
+                            <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="icon-btn" title="Delete">
+                            <i class="bi bi-trash"></i>
+                            </button>
+                        </td>
+                        </tr>
+                    </tbody>
+                    </table></div>
+                    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
